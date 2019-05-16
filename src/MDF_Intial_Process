@@ -43,4 +43,54 @@ public class Intial_Process {
 		driver.findElement(By.xpath("//*[@name='Submit']")).click();
 		Thread.sleep(3000);
 	}
+	
 }
+
+public class Process_Booking extends Intial_Process {
+
+	public void TktBooking(){
+		//Ticket Booking Process 
+		driver.findElement(By.xpath("//*[@name='radiobutton_0']")).click();
+		driver.findElement(By.xpath("//*[@name='continue']")).click();	
+	}
+	public void Payment() throws InterruptedException{
+	//Payment Method
+		
+driver.findElement(By.xpath("//*[@name='first_name']")).sendKeys("Kindros");
+driver.findElement(By.xpath("//*[@name='last_name']")).sendKeys("Lindaa");
+	
+driver.findElement(By.xpath("//*[@name='address']")).sendKeys("Somaliya @ Sydney");
+driver.findElement(By.xpath("//*[@name='cc_num']")).sendKeys("1234567891234567");
+		
+new Select(driver.findElement(By.xpath("//*[@name='cc_type']"))).selectByIndex(3);
+new Select(driver.findElement(By.xpath("//*[@name='cc_exp_month']"))).selectByIndex(4);
+new Select(driver.findElement(By.xpath("//*[@name='cc_exp_year']"))).selectByIndex(11);
+driver.findElement(By.xpath("//*[@name='cc_cvv']")).sendKeys("369");
+Thread.sleep(3000);
+driver.findElement(By.xpath("//*[@name='book_now']")).click();
+Thread.sleep(10000);
+
+	}
+	public void Close_browser(){
+		driver.close();
+	}
+	
+}
+
+---------------------------------
+package MDF;
+
+public class Final_Process {
+	public static void main(String[] args) throws Throwable {
+		
+		Process_Booking pb = new Process_Booking();
+		pb.Launch_method();
+		pb.Login();
+		pb.Search_Process();
+		pb.TktBooking();
+		pb.Payment();
+		pb.Close_browser();
+		
+	}
+}
+
