@@ -1,6 +1,11 @@
 package Daily;
 
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -50,6 +55,21 @@ public class Tktbkt_method {
 		
 		driver.findElement(By.xpath("//*[@name='address']")).sendKeys("Somaliya @ Sydney");
 		driver.findElement(By.xpath("//*[@name='cc_num']")).sendKeys("1234567891234567");
+		
+		driver.navigate().back();
+		TakesScreenshot ts = (TakesScreenshot)driver;
+		File src=ts.getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(src, new File("./ScreenShots/Booking_1.png"));
+		Thread.sleep(3000);
+		/*
+		driver.navigate().forward();
+		File src1=ts.getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(src1, new File("./ScreenShots/Booking_2.png"));
+		Thread.sleep(3000);
+		driver.navigate().refresh();
+		File src2=ts.getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(src2, new File("./ScreenShots/Booking_3.png"));
+		Thread.sleep(3000);*/
 		
 		new Select(driver.findElement(By.xpath("//*[@name='cc_type']"))).selectByIndex(3);
 		new Select(driver.findElement(By.xpath("//*[@name='cc_exp_month']"))).selectByIndex(4);
